@@ -1,0 +1,24 @@
+### ReactSharedInternals
+
+- https://github.com/facebook/react/blob/main/packages/react/src/ReactSharedInternals.js
+
+```js
+import ReactCurrentDispatcher from './ReactCurrentDispatcher';
+import ReactCurrentCache from './ReactCurrentCache';
+import ReactCurrentBatchConfig from './ReactCurrentBatchConfig';
+import ReactCurrentActQueue from './ReactCurrentActQueue';
+import ReactCurrentOwner from './ReactCurrentOwner';
+import ReactDebugCurrentFrame from './ReactDebugCurrentFrame';
+import {enableServerContext} from 'shared/ReactFeatureFlags';
+import {ContextRegistry} from './ReactServerContextRegistry';
+
+const ReactSharedInternals = {
+  ReactCurrentDispatcher,
+  ReactCurrentCache,
+  ReactCurrentBatchConfig,
+  ReactCurrentOwner,
+};
+```
+
+- 위 4개의 객체를 변수로 선언해서 export하는 것 
+

@@ -1,0 +1,29 @@
+## ReactCurrentDispatcher
+
+- https://github.com/facebook/react/blob/main/packages/react/src/ReactCurrentDispatcher.js
+
+- @flow는?
+
+- react-reconciler 패키지에 또 ReactInternalTypes 파일에 있나보다
+
+- 현재 dispatcher를 기록한다?
+
+```
+import type {Dispatcher} from 'react-reconciler/src/ReactInternalTypes';
+
+/**
+ * Keeps track of the current dispatcher.
+ */
+const ReactCurrentDispatcher = {
+  current: (null: null | Dispatcher),
+};
+
+export default ReactCurrentDispatcher;
+
+```
+
+- 이 Dispatcher는 무엇일까? 
+
+- 따라가보기로 하자 
+
+- https://github.com/facebook/react/blob/main/packages/react-dom/src/shared/ReactDOMFloat.js#L16

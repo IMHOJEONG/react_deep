@@ -1,0 +1,47 @@
+### ReactHooks.js 파일
+
+- https://github.com/facebook/react/blob/main/packages/react/src/ReactHooks.js
+
+- @flow
+
+- shared/ReactTypes 파일
+
+```js
+import type {
+  ReactContext,
+  StartTransitionOptions,
+  Usable,
+} from "shared/ReactTypes";
+```
+
+```js
+import ReactCurrentDispatcher from "./ReactCurrentDispatcher";
+import ReactCurrentCache from "./ReactCurrentCache";
+```
+
+### useState 함수
+
+```js
+export function useState<S>(
+  initialState: (() => S) | S
+): [S, Dispatch<BasicStateAction<S>>] {
+  const dispatcher = resolveDispatcher();
+  return dispatcher.useState(initialState);
+}
+```
+
+- resolveDispatcher 함수를 호출해서, 그 안에 있는 useState 함수를 사용하는 방식
+
+- initialState를 매개변수로 받음
+
+```js
+import type {
+  ReactContext,
+  StartTransitionOptions,
+  Usable,
+} from "shared/ReactTypes";
+```
+
+- shared/ReactTypes 패키지에 대해서 알아보자
+
+-

@@ -1,0 +1,49 @@
+### useState를 깊게 파보자
+
+```javascript
+ƒ useState(initialState) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useState(initialState);
+}
+```
+
+- console.log에 useState를 출력한 결과
+
+- resolveDispatcher 함수의 경로를 찾아보자
+
+  - https://github.com/frontapp/react/blob/5c2b2c0852c715abda7296bd6e7a2e941ca66969/packages/react/src/ReactHooks.js#L16
+
+```jsx
+import type { Dispatcher } from "react-reconciler/src/ReactInternalTypes";
+import type {
+  ReactContext,
+  StartTransitionOptions,
+  Usable,
+} from "shared/ReactTypes";
+
+import ReactCurrentDispatcher from "./ReactCurrentDispatcher";
+import ReactCurrentCache from "./ReactCurrentCache";
+
+type BasicStateAction<S> = ((S) => S) | S;
+type Dispatch<A> = (A) => void;
+
+function resolveDispatcher() {
+  const dispatcher = ReactCurrentDispatcher.current;
+  if (__DEV__) {
+    if (dispatcher === null) {
+      console.error(
+        "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for" +
+          " one of the following reasons:\n" +
+          "1. You might have mismatching versions of React and the renderer (such as React DOM)\n" +
+          "2. You might be breaking the Rules of Hooks\n" +
+          "3. You might have more than one copy of React in the same app\n" +
+          "See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem."
+      );
+    }
+  }
+  // Will result in a null access error if accessed outside render phase. We
+  // intentionally don't throw our own error because this is in a hot path.
+  // Also helps ensure this is inlined.
+  return ((dispatcher: any): Dispatcher);
+}
+```

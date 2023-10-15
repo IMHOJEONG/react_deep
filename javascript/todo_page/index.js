@@ -31,17 +31,6 @@ window.setInterval(()=>{
 
 render();
 
-
-
-
-
-
-
-
-
-
-
-
 const getTodoElement = (todo) => {
   const { text, completed } = todo;
 

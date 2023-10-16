@@ -1,7 +1,36 @@
+let template = '';
+
+const createNewTodoNode = () => {
+
+    if(!template) {
+        template = document.getElementById('todo-item');
+    }
+
+    return template
+        .content
+        .firstElementChild
+        .cloneNode(true);
+}
+
+
 const getTodoElement = (todo) => {
     const { text, completed } = todo;
   
-    return `
+    return <template>
+<li>
+              <div class="view">
+                  <input 
+                      class="toggle"
+                      type="checkbox"
+                  />
+                  <label></label>
+                  <button class="destroy"></button>
+              </div>
+              <input class="edit" value="${text}" />
+          </li>
+        </template>
+    
+    `
           <li ${completed ? 'class="completed"' : ""}>
               <div class="view">
                   <input 

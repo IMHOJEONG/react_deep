@@ -28,47 +28,20 @@ const getTodoElement = (todo, index, events) => {
             .checked = true;
     }
 
-    const handler = e => events.deleteItem(index);
-
-    element    
+    element
         .querySelector('button.destroy')
-        .addEventListener('click', handler);
+        .dataset
+        .index = index;
+
 
     return element;
 
-  
-//     return <template>
-// <li>
-//               <div class="view">
-//                   <input 
-//                       class="toggle"
-//                       type="checkbox"
-//                   />
-//                   <label></label>
-//                   <button class="destroy"></button>
-//               </div>
-//               <input class="edit" value="${text}" />
-//           </li>
-//         </template>
-    
-//     `
-//           <li ${completed ? 'class="completed"' : ""}>
-//               <div class="view">
-//                   <input 
-//                       ${completed ? "checked" : ""}
-//                       class="toggle"
-//                       type="checkbox"
-//                   />
-//                   <label>${text}</label>
-//                   <button class="destroy"></button>
-//               </div>
-//               <input class="edit" value="${text}" />
-//           </li>
-//       `;
 };
   
-export default (targetElement, { todos }, events) => {
+export default (targetElement, state, events) => {
 
+    const { todos } = state;
+    const { deleteItem } = events;
     const newTodoList = targetElement.cloneNode(true);
     
     newTodoList.innerHTML = '';
@@ -78,6 +51,13 @@ export default (targetElement, { todos }, events) => {
         .forEach(element => {
             newTodoList.appendChild(element);
         })
+
+    newTodoList.addEventListener('click', e => {
+        if(e.target.matches('button.destroy')) {
+            deleteItem(e.target.dataset.index);
+        }
+    });
+    
 
     return newTodoList;
 

@@ -1,5 +1,9 @@
 - https://react.dev/learn/your-first-component#defining-a-component
 
+- 리액트 사용 코드 출처
+
+  - https://react.dev/learn/installation#try-react-locally
+
 - 흠.. 어디를 중단점으로 잡아야 할 지를 모르겠다
 
 ![profile](./img/1_profile.png)
@@ -141,3 +145,9 @@ function createRoot(container, options) {
   return new ReactDOMRoot(root);
 }
 ```
+
+- ReactDOM.createRoot가 이제는 지원하지 않는다고 하던데?
+
+![](./img/3_remove_ReactDOM.createRoot.png)
+
+- import 문에서는 react-dom/client, umd에서는 ReactDOM으로 표시해서 사용한다??? 
